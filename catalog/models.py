@@ -1,5 +1,8 @@
+""" Models """
+import uuid
 from django.db import models
 from django.urls import  reverse
+
 
 class Genre(models.Model):
     """ Book genre """
@@ -7,6 +10,7 @@ class Genre(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Book(models.Model):
     """ Book representation """
@@ -22,6 +26,9 @@ class Book(models.Model):
     # Relations
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
 
+    class Meta:
+        ordering = ['title']
+
     def __str__(self):
         """ str() """
         return self.title
@@ -36,7 +43,7 @@ class Book(models.Model):
     # As functions are objects themselfes I gues you can add properties to them...
     display_genre.short_description = 'Genre'
 
-import uuid
+
 class BookInstance(models.Model):
     """ Model of book instances, ie. individual books that exist in the library """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this book")
@@ -54,7 +61,7 @@ class BookInstance(models.Model):
     status = models.CharField(max_length=1 , choices=LOAN_STATUS, blank=True, default='m', help_text="Book availability")
 
     class Meta:
-        ordering = ['due_back']
+        ordering = ['due_back'] #NOTE some framework automagic rely on this one
 
     def __str__(self):
         """ str() """
