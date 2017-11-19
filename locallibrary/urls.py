@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^catalog/', include('catalog.urls')),
     # Redirect base url to /catalog:
     url(r'^$', RedirectView.as_view(url='/catalog/', permanent=True)),
+    url(r'^accounts/', include('django.contrib.auth.urls')), # Map some standard views as login/password & password reset stuff
 ]
 
 from django.conf import settings

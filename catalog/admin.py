@@ -37,7 +37,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
         }),
         # Section 2 'Availability'
         ('Availability', {
-            'fields': ('status', 'due_back')
+            'fields': ('status', 'due_back','borrower')
         }),        
     )
 
