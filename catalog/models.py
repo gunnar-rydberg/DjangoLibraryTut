@@ -71,6 +71,8 @@ class BookInstance(models.Model):
 
     class Meta:
         ordering = ['due_back'] #NOTE some framework automagic rely on this one
+        permissions = (('can_mark_returned', 'Set book as returned'),
+                       ('can_edit', 'Edit book'))
 
     def __str__(self):
         """ str() """
